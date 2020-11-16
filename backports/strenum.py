@@ -34,4 +34,4 @@ class StrEnum(str, Enum):
     # __str__ = str.__str__
 
     def __str__(self):
-        return self.value
+        return super().__str__()
