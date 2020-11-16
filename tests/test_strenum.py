@@ -1,13 +1,9 @@
 #!/usr/bin/env python
-import unittest
 from enum import Enum, unique
+import sys
+import unittest
 
 from backports.strenum import StrEnum
-
-
-import pydoc
-import sys
-from io import StringIO
 
 
 # for pickle test and subclass tests
