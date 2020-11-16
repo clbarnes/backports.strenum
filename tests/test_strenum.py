@@ -13,7 +13,6 @@ class Name(StrEnum):
 
 
 class TestEnum(unittest.TestCase):
-
     def test_strenum_inherited_methods(self):
         class phy(StrEnum):
             pi = "Pi"
