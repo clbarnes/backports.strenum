@@ -15,8 +15,6 @@ setup(
     long_description=long_description,  # Optional
     long_description_content_type='text/x-rst',  # Optional (see note above)
     url='https://github.com/clbarnes/backports.strenum',  # Optional
-    author='Chris L. Barnes',  # Optional
-    author_email='chrislloydbarnes@gmail.com',  # Optional
     classifiers=[  # Optional
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',

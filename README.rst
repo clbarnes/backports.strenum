@@ -5,7 +5,10 @@ A backport of (copy and paste from) python 3.10's StrEnum class:
 
     Base class for creating enumerated constants that are also subclasses of :class:`str`.
 
-See `here <https://discuss.python.org/t/built-in-strenum/4192>`_ for design discussion.
+See `here <https://discuss.python.org/t/built-in-strenum/4192>`_ for design discussion;
+`here <https://github.com/python/cpython/pull/22337>`_ and
+`here <https://github.com/python/cpython/pull/22362>`_ for `Ethan Furman <https://github.com/ethanfurman>`_'s
+pull requests containing this implementation.
 
 Install with ``pip install backports.strenum``, and use with::
 
