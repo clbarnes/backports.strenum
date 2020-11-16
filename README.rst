@@ -3,10 +3,28 @@ backports.strenum
 
 A backport of (copy and paste from) python 3.10's StrEnum class:
 
-    Base class for creating enumerated constants that are also
-    subclasses of :class:`str`.
+    Base class for creating enumerated constants that are also subclasses of :class:`str`.
 
 See `here <https://discuss.python.org/t/built-in-strenum/4192>`_ for design discussion.
+
+Install with ``pip install backports.strenum``, and use with::
+
+.. code-block:: python
+
+    try:
+        # be ready for 3.10 when it drops
+        from enum import StrEnum
+    except ImportError:
+        from backports.strenum import StrEnum
+
+    class MyStrEnum(StrEnum):
+        POTATO = "potato"
+        ORANGE = "orange"
+        SPADE = "spade"
+
+    MyStrEnum.POTATO == "potato"  # True
+    MyStrEnum.ORANGE.upper() == "ORANGE"  # True
+    str(MyStrEnum.SPADE) == "spade"  # True
 
 ----
 
@@ -59,4 +77,3 @@ parts of Python will read the string data directly, while others will call
 :meth:`str()`. To make those two operations have the same result,
 :meth:`StrEnum.__str__` will be the same as :meth:`str.__str__` so that
 ``str(StrEnum.member) == StrEnum.member`` is true.
-
