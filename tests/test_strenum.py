@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import unittest
 from enum import Enum, unique
 
@@ -147,97 +148,6 @@ class TestEnum(unittest.TestCase):
             class ThirdFailedStrEnum(StrEnum):
                 one = "1"
                 two = b"2", "ascii", 9
-
-
-expected_help_output_with_docs = """\
-Help on class Color in module %s:
-class Color(enum.Enum)
- |  Color(value, names=None, *, module=None, qualname=None, type=None, start=1)
- |\x20\x20
- |  An enumeration.
- |\x20\x20
- |  Method resolution order:
- |      Color
- |      enum.Enum
- |      builtins.object
- |\x20\x20
- |  Data and other attributes defined here:
- |\x20\x20
- |  blue = <Color.blue: 3>
- |\x20\x20
- |  green = <Color.green: 2>
- |\x20\x20
- |  red = <Color.red: 1>
- |\x20\x20
- |  ----------------------------------------------------------------------
- |  Data descriptors inherited from enum.Enum:
- |\x20\x20
- |  name
- |      The name of the Enum member.
- |\x20\x20
- |  value
- |      The value of the Enum member.
- |\x20\x20
- |  ----------------------------------------------------------------------
- |  Readonly properties inherited from enum.EnumMeta:
- |\x20\x20
- |  __members__
- |      Returns a mapping of member name->value.
- |\x20\x20\x20\x20\x20\x20
- |      This mapping lists all enum members, including aliases. Note that this
- |      is a read-only view of the internal mapping."""
-
-expected_help_output_without_docs = """\
-Help on class Color in module %s:
-class Color(enum.Enum)
- |  Color(value, names=None, *, module=None, qualname=None, type=None, start=1)
- |\x20\x20
- |  Method resolution order:
- |      Color
- |      enum.Enum
- |      builtins.object
- |\x20\x20
- |  Data and other attributes defined here:
- |\x20\x20
- |  blue = <Color.blue: 3>
- |\x20\x20
- |  green = <Color.green: 2>
- |\x20\x20
- |  red = <Color.red: 1>
- |\x20\x20
- |  ----------------------------------------------------------------------
- |  Data descriptors inherited from enum.Enum:
- |\x20\x20
- |  name
- |\x20\x20
- |  value
- |\x20\x20
- |  ----------------------------------------------------------------------
- |  Data descriptors inherited from enum.EnumMeta:
- |\x20\x20
- |  __members__"""
-
-
-class TestStdLib(unittest.TestCase):
-
-    maxDiff = None
-
-    class Color(Enum):
-        red = 1
-        green = 2
-        blue = 3
-
-    def test_pydoc(self):
-        # indirectly test __objclass__
-        if StrEnum.__doc__ is None:
-            expected_text = expected_help_output_without_docs % __name__
-        else:
-            expected_text = expected_help_output_with_docs % __name__
-        output = StringIO()
-        helper = pydoc.Helper(output=output)
-        helper(self.Color)
-        result = output.getvalue().strip()
-        self.assertEqual(result, expected_text)
 
 
 if __name__ == "__main__":
