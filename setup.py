@@ -10,7 +10,6 @@ long_description = (here / "README.rst").read_text(encoding="utf-8")
 
 setup(
     name="backports.strenum",
-    version="0.1.0",
     description="Base class for creating enumerated constants that are also subclasses of str",
     long_description=long_description,
     long_description_content_type="text/x-rst",
@@ -25,6 +24,8 @@ setup(
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3 :: Only",
     ],
+    use_scm_version=True,
+    setup_requires=["setuptools_scm"],
     keywords="backports, enum, strenum",
     packages=find_packages(exclude="tests"),
     test_suite="tests",
