@@ -29,5 +29,5 @@ setup(
     keywords="backports, enum, strenum",
     packages=find_packages(exclude="tests"),
     test_suite="tests",
-    python_requires=">=3.6, <4",
+    python_requires=">=3.8, <4",
 )
