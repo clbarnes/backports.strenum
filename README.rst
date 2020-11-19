@@ -53,7 +53,6 @@ Before ``StrEnum``, ``Directions.NORTH`` would have been the ``tuple``
     Unlike other Enum's, ``str(StrEnum.member)`` will return the value of the
     member instead of the usual ``"EnumClass.member"``.
 
-.. versionadded:: 3.10
 
 ----
 
