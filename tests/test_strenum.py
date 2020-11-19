@@ -40,6 +40,7 @@ class TestEnum(unittest.TestCase):
             tau = "Tau"
 
         self.assertTrue(phy.pi < phy.tau)
+
     def test_strenum_inherited_methods(self):
         class phy(StrEnum):
             pi = "Pi"
