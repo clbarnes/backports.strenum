@@ -5,10 +5,9 @@ A backport of (copy and paste from) python 3.10's ``StrEnum`` class for >=3.8:
 
     Base class for creating enumerated constants that are also subclasses of ``str``.
 
-See `here <https://discuss.python.org/t/built-in-strenum/4192>`_ for design discussion;
-`here <https://github.com/python/cpython/pull/22337>`_ and
-`here <https://github.com/python/cpython/pull/22362>`_ for `Ethan Furman <https://github.com/ethanfurman>`_'s
-pull requests containing this implementation.
+See the `design discussion <https://discuss.python.org/t/built-in-strenum/4192>`_,
+and `Ethan Furman <https://github.com/ethanfurman>`_'s `first <https://github.com/python/cpython/pull/22337>`_ and
+`second <https://github.com/python/cpython/pull/22362>`_ PR with this implementation.
 
 A slightly different implementation would likely be compatible with lower python versions;
 PRs are welcome if they pass the test suite.
