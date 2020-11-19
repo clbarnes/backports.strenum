@@ -13,6 +13,33 @@ class Name(StrEnum):
 
 
 class TestEnum(unittest.TestCase):
+    def test_enum_str_override(self):
+        class MyStrEnum(Enum):
+            def __str__(self):
+                return "MyStr"
+
+        class MyMethodEnum(Enum):
+            def hello(self):
+                return "Hello!  My name is %s" % self.name
+
+        class Test1Enum(MyMethodEnum, int, MyStrEnum):
+            One = 1
+            Two = 2
+
+        self.assertEqual(str(Test1Enum.One), "MyStr")
+        #
+        class Test2Enum(MyStrEnum, MyMethodEnum):
+            One = 1
+            Two = 2
+
+        self.assertEqual(str(Test2Enum.One), "MyStr")
+
+    def test_strenum_from_scratch(self):
+        class phy(str, Enum):
+            pi = "Pi"
+            tau = "Tau"
+
+        self.assertTrue(phy.pi < phy.tau)
     def test_strenum_inherited_methods(self):
         class phy(StrEnum):
             pi = "Pi"
