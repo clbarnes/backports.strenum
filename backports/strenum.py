@@ -30,8 +30,4 @@ class StrEnum(str, Enum):
         member._value_ = value
         return member
 
-    # Real implementation incompatible with <3.8
-    # __str__ = str.__str__
-
-    def __str__(self):
-        return super().__str__()
+    __str__ = str.__str__
