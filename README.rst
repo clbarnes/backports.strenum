@@ -3,7 +3,7 @@ backports.strenum
 
 A backport of (copy and paste from) python 3.10's ``StrEnum`` class for >=3.8:
 
-    Base class for creating enumerated constants that are also subclasses of :class:`str`.
+    Base class for creating enumerated constants that are also subclasses of ``str``.
 
 See `here <https://discuss.python.org/t/built-in-strenum/4192>`_ for design discussion;
 `here <https://github.com/python/cpython/pull/22337>`_ and
@@ -36,17 +36,17 @@ Install with ``pip install backports.strenum``, and use with::
 StrEnum
 ^^^^^^^
 
-The second variation of :class:`Enum` that is provided is also a subclass of
-:class:`str`.  Members of a :class:`StrEnum` can be compared to strings;
+The second variation of ``Enum`` that is provided is also a subclass of
+``str``.  Members of a ``StrEnum`` can be compared to strings;
 by extension, string enumerations of different types can also be compared
-to each other.  :class:`StrEnum` exists to help avoid the problem of getting
+to each other.  ``StrEnum`` exists to help avoid the problem of getting
 an incorrect member::
 
     >>> class Directions(StrEnum):
     ...     NORTH = 'north',    # notice the trailing comma
     ...     SOUTH = 'south'
 
-Before :class:`StrEnum`, ``Directions.NORTH`` would have been the :class:`tuple`
+Before ``StrEnum``, ``Directions.NORTH`` would have been the ``tuple``
 ``('north',)``.
 
 .. note::
@@ -61,8 +61,8 @@ Before :class:`StrEnum`, ``Directions.NORTH`` would have been the :class:`tuple`
 Creating members that are mixed with other data types
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
-When subclassing other data types, such as :class:`int` or :class:`str`, with
-an :class:`Enum`, all values after the `=` are passed to that data type's
+When subclassing other data types, such as ``int`` or ``str``, with
+an ``Enum``, all values after the `=` are passed to that data type's
 constructor.  For example::
 
     >>> class MyEnum(IntEnum):
@@ -73,12 +73,12 @@ constructor.  For example::
 
 ----
 
-``StrEnum`` and :meth:`str.__str__`
+``StrEnum`` and ``str.__str__``
 """""""""""""""""""""""""""""""""""
 
-An important difference between :class:`StrEnum` and other Enums is the
-:meth:`__str__` method; because :class:`StrEnum` members are strings, some
+An important difference between ``StrEnum`` and other Enums is the
+``__str__`` method; because ``StrEnum`` members are strings, some
 parts of Python will read the string data directly, while others will call
-:meth:`str()`. To make those two operations have the same result,
-:meth:`StrEnum.__str__` will be the same as :meth:`str.__str__` so that
+``str()``. To make those two operations have the same result,
+``StrEnum.__str__`` will be the same as ``str.__str__`` so that
 ``str(StrEnum.member) == StrEnum.member`` is true.
