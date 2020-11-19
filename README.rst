@@ -1,7 +1,7 @@
 backports.strenum
 =================
 
-A backport of (copy and paste from) python 3.10's StrEnum class for >=3.8:
+A backport of (copy and paste from) python 3.10's ``StrEnum`` class for >=3.8:
 
     Base class for creating enumerated constants that are also subclasses of :class:`str`.
 
@@ -10,9 +10,11 @@ See `here <https://discuss.python.org/t/built-in-strenum/4192>`_ for design disc
 `here <https://github.com/python/cpython/pull/22362>`_ for `Ethan Furman <https://github.com/ethanfurman>`_'s
 pull requests containing this implementation.
 
-Install with ``pip install backports.strenum``, and use with::
+A slightly different implementation would likely be compatible with lower python versions;
+PRs are welcome if they pass the test suite.
+The existing (reference) implementation should still be the one used on supported versions.
 
-.. code-block:: python
+Install with ``pip install backports.strenum``, and use with::
 
     try:
         # be ready for 3.10 when it drops
