@@ -1,7 +1,7 @@
 backports.strenum
 =================
 
-A backport of (copy and paste from) python 3.10's ``StrEnum`` class for >=3.8:
+A backport of (copy and paste from) python 3.10's ``StrEnum`` class for >=3.8.6:
 
     Base class for creating enumerated constants that are also subclasses of ``str``.
 
