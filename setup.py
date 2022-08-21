@@ -28,6 +28,7 @@ setup(
     setup_requires=["setuptools_scm"],
     keywords="backports, enum, strenum",
     packages=find_packages(exclude="tests"),
+    package_data={"backports.strenum": ["py.typed", "strenum.pyi"]}
     test_suite="tests",
     python_requires=">=3.8, <4",
 )
