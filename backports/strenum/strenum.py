@@ -37,7 +37,9 @@ class StrEnum(str, Enum):
     __str__ = str.__str__
 
     @staticmethod
-    def _generate_next_value_(name: str, start: int, count: int, last_values: List[Any]) -> str:
+    def _generate_next_value_(
+        name: str, start: int, count: int, last_values: List[Any]
+    ) -> str:
         """
         Return the lower-cased version of the member name.
         """
