@@ -27,6 +27,7 @@ class TestEnum(unittest.TestCase):
             Two = 2
 
         self.assertEqual(str(Test1Enum.One), "MyStr")
+
         #
         class Test2Enum(MyStrEnum, MyMethodEnum):
             One = 1
@@ -76,6 +77,7 @@ class TestEnum(unittest.TestCase):
         self.assertEqual(str(GoodStrEnum.one), "1")
         self.assertEqual(GoodStrEnum.one, str(GoodStrEnum.one))
         self.assertEqual(GoodStrEnum.one, "{}".format(GoodStrEnum.one))
+
         #
         class DumbMixin:
             def __str__(self):
@@ -88,6 +90,7 @@ class TestEnum(unittest.TestCase):
 
         self.assertEqual(DumbStrEnum.seven, "7")
         self.assertEqual(str(DumbStrEnum.seven), "don't do this")
+
         #
         class EnumMixin(Enum):
             def hello(self):
@@ -98,6 +101,7 @@ class TestEnum(unittest.TestCase):
 
         self.assertEqual(HelloEnum.eight, "8")
         self.assertEqual(HelloEnum.eight, str(HelloEnum.eight))
+
         #
         class GoodbyeMixin:
             def goodbye(self):
