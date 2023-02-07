@@ -1,9 +1,7 @@
 backports.strenum
 =================
 
-A backport of (copy and paste from) python 3.10's ``StrEnum`` class for >=3.8.6:
-
-    Base class for creating enumerated constants that are also subclasses of ``str``.
+A backport of (copy and paste from) python 3.11's ``StrEnum`` class for >=3.8.6:
 
 See the `design discussion <https://discuss.python.org/t/built-in-strenum/4192>`_,
 and `Ethan Furman <https://github.com/ethanfurman>`_'s `first <https://github.com/python/cpython/pull/22337>`_ and
@@ -13,12 +11,14 @@ A slightly different implementation would likely be compatible with lower python
 PRs are welcome if they pass the test suite.
 The existing (reference) implementation should still be the one used on supported versions.
 
-Install with ``pip install backports.strenum``, and use with::
+Install with ``pip install backports.strenum``, and use with:
 
-    try:
-        # be ready for 3.10 when it drops
+.. code-block:: python
+    import sys
+
+    if sys.version_info >= (3, 11):
         from enum import StrEnum
-    except ImportError:
+    else:
         from backports.strenum import StrEnum
 
     class MyStrEnum(StrEnum):
@@ -30,53 +30,29 @@ Install with ``pip install backports.strenum``, and use with::
     MyStrEnum.ORANGE.upper() == "ORANGE"  # True
     str(MyStrEnum.SPADE) == "spade"  # True
 
-----
 
-StrEnum
+Gotchas
 ^^^^^^^
 
-The second variation of ``Enum`` that is provided is also a subclass of
-``str``.  Members of a ``StrEnum`` can be compared to strings;
-by extension, string enumerations of different types can also be compared
-to each other.  ``StrEnum`` exists to help avoid the problem of getting
-an incorrect member::
+A number of behaviours relating to the treatment of enum classes as containers of their members (e.g. iterating and containment checks) will be changing in python 3.12.
 
-    >>> class Directions(StrEnum):
-    ...     NORTH = 'north',    # notice the trailing comma
-    ...     SOUTH = 'south'
-
-Before ``StrEnum``, ``Directions.NORTH`` would have been the ``tuple``
-``('north',)``.
-
-.. note::
-
-    Unlike other Enum's, ``str(StrEnum.member)`` will return the value of the
-    member instead of the usual ``"EnumClass.member"``.
-
+This package intends only to allow pre-3.11 users to get 3.11-like behaviour; after that, stick with the standard library.
 
 ----
 
-Creating members that are mixed with other data types
-"""""""""""""""""""""""""""""""""""""""""""""""""""""
+These are the `docs provided with python 3.11 <https://docs.python.org/3.11/library/enum.html#enum.StrEnum>`_:
 
-When subclassing other data types, such as ``int`` or ``str``, with
-an ``Enum``, all values after the `=` are passed to that data type's
-constructor.  For example::
+``class enum.StrEnum``
+^^^^^^^^^^^^^^^^^^^^^^
 
-    >>> class MyEnum(IntEnum):
-    ...     example = '11', 16      # '11' will be interpreted as a hexadecimal
-    ...                             # number
-    >>> MyEnum.example
-    <MyEnum.example: 17>
+*StrEnum* is the same as *Enum*, but its members are also strings and can be used in most of the same places that a string can be used.
+The result of any string operation performed on or with a *StrEnum* member is not part of the enumeration.
 
-----
+.. Note::
+    There are places in the stdlib that check for an exact `str <https://docs.python.org/3.11/library/enum.html#enum.StrEnum>`_ instead of a `str <https://docs.python.org/3.11/library/enum.html#enum.StrEnum>`_ subclass (i.e. ``type(unknown) == str`` instead of ``isinstance(unknown, str)``), and in those locations you will need to use ``str(StrEnum.member)``.
 
-``StrEnum`` and ``str.__str__``
-"""""""""""""""""""""""""""""""""""
+.. Note::
+    Using `auto <https://docs.python.org/3.11/library/enum.html#enum.auto>`_ with `StrEnum <https://docs.python.org/3.11/library/enum.html#enum.StrEnum>`_ results in the lower-cased member name as the value.
 
-An important difference between ``StrEnum`` and other Enums is the
-``__str__`` method; because ``StrEnum`` members are strings, some
-parts of Python will read the string data directly, while others will call
-``str()``. To make those two operations have the same result,
-``StrEnum.__str__`` will be the same as ``str.__str__`` so that
-``str(StrEnum.member) == StrEnum.member`` is true.
+.. Note::
+    `__str__() <https://docs.python.org/3.11/reference/datamodel.html#object.__str__>`_ is str.__str__() to better support the replacement of existing constants use-case. `__format__() <https://docs.python.org/3.11/reference/datamodel.html#object.__format__>`_ is likewise ``str.__format__()`` for that same reason.
