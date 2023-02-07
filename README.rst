@@ -14,6 +14,7 @@ The existing (reference) implementation should still be the one used on supporte
 Install with ``pip install backports.strenum``, and use with:
 
 .. code-block:: python
+
     import sys
 
     if sys.version_info >= (3, 11):
