@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "backports.strenum"
-version = "1.2.7"
+version = "1.2.8"
 description = "Base class for creating enumerated constants that are also subclasses of str"
 authors = ["Chris L. Barnes <chrislloydbarnes@gmail.com>"]
 readme = "README.rst"
