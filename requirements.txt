@@ -1,5 +1,0 @@
-# dev
-
-flake8
-mypy
-black

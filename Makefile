@@ -1,11 +1,12 @@
 .PHONY: fmt lint test
 
 fmt:
-	black .
+	poetry run ruff check --fix-only . && \
+	poetry run black .
 
 lint:
-	black --check .
-	flake8 backports
+	poetry run black --check .
+	poetry run ruff check .
 
 test:
-	python tests/test_strenum.py
+	poetry run python tests/test_strenum.py
