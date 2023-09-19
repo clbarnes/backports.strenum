@@ -7,6 +7,15 @@ readme = "README.rst"
 packages = [
     { include = "backports", from = "src" },
 ]
+license = "MIT"
+repository = "https://github.com/clbarnes/backports.strenum"
+keywords = ["backports", "enum", "strenum"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+]
 
 [tool.poetry.dependencies]
 python = "^3.8.6"

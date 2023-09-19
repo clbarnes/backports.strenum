@@ -128,7 +128,7 @@ class TestEnum(unittest.TestCase):
 
         with self.assertRaisesRegex(TypeError, "2 is not a string"):
 
-            class ThirdFailedStrEnum(StrEnum):
+            class ThirdFailedStrEnum(StrEnum):  # noqa
                 one = "1"
                 two = 2
 
@@ -137,7 +137,7 @@ class TestEnum(unittest.TestCase):
             "encoding must be a string, not %r" % (sys.getdefaultencoding,),
         ):
 
-            class ThirdFailedStrEnum(StrEnum):
+            class ThirdFailedStrEnum(StrEnum):  # noqa
                 one = "1"
                 two = b"2", sys.getdefaultencoding
 
@@ -145,7 +145,7 @@ class TestEnum(unittest.TestCase):
             TypeError, "errors must be a string, not 9"
         ):
 
-            class ThirdFailedStrEnum(StrEnum):
+            class ThirdFailedStrEnum(StrEnum):  # noqa
                 one = "1"
                 two = b"2", "ascii", 9
 
