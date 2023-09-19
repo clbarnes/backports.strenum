@@ -8,13 +8,19 @@ jobs:
   lint:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
         with:
           python-version: "3.x"
-      - run: pip install $(grep -E '^(black|flake8)' requirements.txt)
-      - run: flake8 backports
-      - run: black . --check
+      - uses: abatilo/actions-poetry@v2
+      - uses: actions/cache@v3
+        name: Cache the virtual environment
+        with:
+          path: ./.venv
+          key: venv-${{ hashFiles('poetry.lock') }}
+      - run: poetry install
+      - run: poetry check
+      - run: make lint
 
   test:
     runs-on: ubuntu-22.04
@@ -27,12 +33,18 @@ jobs:
           - "3.10"
           - "3.11"
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
         with:
-          python-version: ${{ matrix.python-version }}
-      - run: pip install .
-      - run: python tests/test_strenum.py
+          python-version: "3.x"
+      - uses: abatilo/actions-poetry@v2
+      - uses: actions/cache@v3
+        name: Cache the virtual environment
+        with:
+          path: ./.venv
+          key: venv-${{ hashFiles('poetry.lock') }}
+      - run: poetry install
+      - run: make test
 
   deploy:
     runs-on: ubuntu-22.04
@@ -43,9 +55,6 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: "3.10"
-      - run: ./setup.py sdist
+      - uses: abatilo/actions-poetry@v2
       - name: Publish package
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          user: __token__
-          password: ${{ secrets.pypi_password }}
+        run: poetry publish --build --username __token__ --password "${{ secrets.PYPI_PASSWORD }}"
