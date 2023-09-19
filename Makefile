@@ -10,3 +10,6 @@ lint:
 
 test:
 	poetry run python tests/test_strenum.py
+
+version-tag:
+	git tag -a "v$(shell poetry version --short)"
