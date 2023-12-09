@@ -31,6 +31,9 @@ Install with ``pip install backports.strenum``, and use with:
     MyStrEnum.ORANGE.upper() == "ORANGE"  # True
     str(MyStrEnum.SPADE) == "spade"  # True
 
+From version 1.3.0, this package cannot be installed on python >=3.11.
+It shouldn't be used on them anyway.
+Make sure that in your package, this is a conditional dependency.
 
 Gotchas
 ^^^^^^^

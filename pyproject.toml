@@ -18,7 +18,7 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.8.6"
+python = ">=3.8.6,<3.11"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.7.0"
