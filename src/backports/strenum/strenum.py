@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import Any, List, Type, TypeVar
+from typing import List, Type, TypeVar
 
 
 _S = TypeVar("_S", bound="StrEnum")
@@ -38,7 +38,7 @@ class StrEnum(str, Enum):
 
     @staticmethod
     def _generate_next_value_(
-        name: str, start: int, count: int, last_values: List[Any]
+        name: str, start: int, count: int, last_values: List[str]
     ) -> str:
         """
         Return the lower-cased version of the member name.
