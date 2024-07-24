@@ -7,7 +7,7 @@ readme = "README.rst"
 packages = [
     { include = "backports", from = "src" },
 ]
-license = "MIT"
+license = "PSF-2.0"
 repository = "https://github.com/clbarnes/backports.strenum"
 keywords = ["backports", "enum", "strenum"]
 classifiers = [
